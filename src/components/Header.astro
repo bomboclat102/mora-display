@@ -147,3 +147,15 @@ import logoTransparent from "../assets/logo-transparent.png";
         }
     }
 </style>
+
+<script>
+    // Close mobile menu on link click
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            if (menuToggle.checked) {
+                menuToggle.checked = false;
+            }
+        });
+    });
+</script>
