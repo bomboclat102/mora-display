@@ -1,5 +1,6 @@
 ---
 import ProjectCard from '../ProjectCard.astro';
+import SectionHeader from '../SectionHeader.astro';
 
 import project1Img1 from '../../assets/project-1/img1.jpg';
 import project1Img2 from '../../assets/project-1/img2.jpg';
@@ -11,10 +12,10 @@ import project3Img2 from '../../assets/project-3/img2.jpg';
 
 <section class="projects" id="projects">
     <div class="container">
-        <div class="projects-header">
-            <h2>Our Latest Projects</h2>
-            <p>Discover our portfolio of innovative exhibition stand designs that captivate audiences and drive results.</p>
-        </div>
+        <SectionHeader 
+            title="Our Projects"
+            subtitle="Explore our portfolio of innovative exhibition stand designs that captivate audiences and drive results."
+        />
         
         <div class="projects-grid">
             <ProjectCard 
@@ -50,30 +51,8 @@ import project3Img2 from '../../assets/project-3/img2.jpg';
     }
     
     .container {
-        z-index: 1;
-        position: relative;
         max-width: 1750px;
         margin: 0 auto;
-    }
-    
-    .projects-header {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-6);
-        text-align: center;
-        align-items: center;
-        margin-bottom: var(--spacing-16);
-    }
-    
-    .projects-header h2 {
-        font-size: var(--font-size-5xl);
-        font-weight: var(--font-weight-extrabold);
-    }
-    
-    .projects-header p {
-        max-width: 600px;
-        font-size: var(--font-size-lg);
-        line-height: var(--line-height-relaxed);
     }
     
     .projects-grid {
