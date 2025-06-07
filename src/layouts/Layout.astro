@@ -11,6 +11,7 @@ import '@fontsource-variable/inter';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 		<title>Mora Display</title>
 	</head>
 	<body>
@@ -164,15 +165,15 @@ import '@fontsource-variable/inter';
         background: var(--color-black);
 	}
 
+    section:not(:first-of-type) {
+        padding: var(--spacing-24) var(--spacing-4);
+    }
+
     h1, h2, h3, h4, h5, h6, p, a {
         margin: 0;
         padding: 0;
         line-height: var(--line-height-normal);
         color: var(--color-white);
         font-size: var(--font-size-base);
-    }
-
-    h1 {
-        font-size: var(--font-size-4xl);
     }
 </style>

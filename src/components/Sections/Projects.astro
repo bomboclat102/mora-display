@@ -1,0 +1,100 @@
+---
+import ProjectCard from '../ProjectCard.astro';
+
+import project1Img1 from '../../assets/project-1/img1.jpg';
+import project1Img2 from '../../assets/project-1/img2.jpg';
+import project2Img1 from '../../assets/project-2/img1.jpg';
+import project2Img2 from '../../assets/project-2/img2.jpg';
+import project3Img1 from '../../assets/project-3/img1.jpg';
+import project3Img2 from '../../assets/project-3/img2.jpg';
+---
+
+<section class="projects" id="projects">
+    <div class="container">
+        <div class="projects-header">
+            <h2>Our Latest Projects</h2>
+            <p>Discover our portfolio of innovative exhibition stand designs that captivate audiences and drive results.</p>
+        </div>
+        
+        <div class="projects-grid">
+            <ProjectCard 
+                title="Modern Tech Expo Stand"
+                description="A sleek, minimalist exhibition stand for a leading technology company featuring interactive displays and modern lighting."
+                images={[project1Img1, project1Img2]}
+                category="Technology"
+            />
+            
+            <ProjectCard 
+                title="Luxury Automotive Display"
+                description="Premium showcase design for automotive brand launch with sophisticated lighting and premium materials."
+                images={[project2Img1, project2Img2]}
+                category="Automotive"
+            />
+            
+            <ProjectCard 
+                title="Healthcare Innovation Hub"
+                description="Clean, professional medical equipment exhibition space with focus on accessibility and clear information display."
+                images={[project3Img1, project3Img2]}
+                category="Healthcare"
+            />
+        </div>
+    </div>
+</section>
+
+<style>
+    .projects {
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(66, 165, 245, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(255, 64, 129, 0.06) 0%, transparent 50%),
+            var(--color-black);
+    }
+    
+    .container {
+        z-index: 1;
+        position: relative;
+        max-width: 1750px;
+        margin: 0 auto;
+    }
+    
+    .projects-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-6);
+        text-align: center;
+        align-items: center;
+        margin-bottom: var(--spacing-16);
+    }
+    
+    .projects-header h2 {
+        font-size: var(--font-size-5xl);
+        font-weight: var(--font-weight-extrabold);
+    }
+    
+    .projects-header p {
+        max-width: 600px;
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-relaxed);
+    }
+    
+    .projects-grid {
+        display: grid;
+        gap: var(--spacing-8);
+        grid-template-columns: 1fr;
+    }
+    
+    @media (min-width: 48rem) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 64rem) {
+        .projects-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .projects {
+            padding: var(--spacing-32) var(--spacing-4);
+        }
+    }
+</style>

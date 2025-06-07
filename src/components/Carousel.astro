@@ -1,0 +1,172 @@
+---
+const { images, alt } = Astro.props;
+
+import { Image } from "astro:assets";
+---
+
+<div class="carousel">
+    <div class="carousel-container">
+        <div class="carousel-track">
+            {images.map((image, index) => (
+                <Image 
+                    src={image} 
+                    alt={`${alt} - Image ${index + 1}`}
+                    class="carousel-slide"
+                    loading="lazy"
+                />
+            ))}
+        </div>
+        
+        <button class="carousel-btn prev" aria-label="Previous image">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        
+        <button class="carousel-btn next" aria-label="Next image">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+    
+    <div class="carousel-dots">
+        {images.map((_, index) => (
+            <button class="dot" aria-label={`Go to image ${index + 1}`}></button>
+        ))}
+    </div>
+</div>
+
+<style>
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .carousel-track {
+        display: flex;
+        height: 100%;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .carousel-slide {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+    
+    .carousel-btn {
+        z-index: 1;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-full);
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        color: var(--color-white);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.8;
+    }
+    .carousel-btn:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-50%) scale(1.1);
+    }
+    .carousel-btn.prev {
+        left: var(--spacing-3);
+    }
+    .carousel-btn.next {
+        right: var(--spacing-3);
+    }
+    
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: var(--spacing-2);
+        margin-top: var(--spacing-4);
+    }
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: var(--radius-full);
+        border: none;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .dot:hover {
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(1.1);
+    }
+    .dot.active {
+        background: var(--color-accent);
+        transform: scale(1.2);
+    }
+    
+    @media (min-width: 48rem) {
+        .carousel-container {
+            height: 300px;
+        }
+        
+        .carousel-btn {
+            width: 48px;
+            height: 48px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousels = document.querySelectorAll('.carousel');
+        
+        carousels.forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const prevBtn = carousel.querySelector('.prev');
+            const nextBtn = carousel.querySelector('.next');
+            const dots = carousel.querySelectorAll('.dot');
+            
+            let currentSlide = 0;
+            
+            function updateCarousel() {
+                track.style.transform = `translateX(${-currentSlide * 100}%)`;
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateCarousel();
+            }
+            
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateCarousel();
+            }
+            
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateCarousel();
+                });
+            });
+            
+            updateCarousel();
+        });
+    });
+</script>
