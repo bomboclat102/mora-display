@@ -31,13 +31,17 @@ import logoTransparent from "../assets/logo-transparent.png";
 
 <style>
     header {
+        z-index: 100;
         position: fixed;
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        height: 70px;
+        height: var(--header-height);
         padding: var(--spacing-3) var(--spacing-4);
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .logo {
@@ -51,20 +55,26 @@ import logoTransparent from "../assets/logo-transparent.png";
     nav {
         display: none;
         position: absolute;
-        top: 65px;
-        padding: var(--spacing-6) 0;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        padding: var(--spacing-6);
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
     nav ul {
-        list-style: none;
         display: flex;
         flex-direction: column;
         gap: var(--spacing-6);
         margin: 0;
         padding: 0;
+        list-style: none;
     }
     nav ul li a {
         text-decoration: none;
-        color: var(--color-black);
+        color: var(--color-white);
         font-size: var(--font-size-2xl);
     }
 
@@ -78,7 +88,8 @@ import logoTransparent from "../assets/logo-transparent.png";
         display: block;
         width: 25px;
         height: 3px;
-        background-color: var(--color-black);
+        border-radius: var(--radius-md);
+        background-color: var(--color-white);
         transition: all 0.3s ease;
     }
     
