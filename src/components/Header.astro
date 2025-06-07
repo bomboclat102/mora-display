@@ -22,9 +22,9 @@ import logoTransparent from "../assets/logo-transparent.png";
 
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -107,5 +107,40 @@ import logoTransparent from "../assets/logo-transparent.png";
     }
     #menu-toggle:checked ~ .hamburger span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
+    }
+
+    @media (min-width: 48rem) {
+        header {
+            justify-content: space-between;
+        }
+        nav {
+            display: block;
+            position: absolute;
+            width: auto;
+            top: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+            background: none;
+            backdrop-filter: none;
+            border-bottom: none;
+            box-shadow: none;
+        }
+        nav ul {
+            flex-direction: row;
+            gap: var(--spacing-8);
+        }
+        nav ul li a {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--color-accent);
+        }
+
+        .hamburger {
+            display: none;
+        }
     }
 </style>

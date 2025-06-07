@@ -13,7 +13,7 @@ import Button from './Button.astro';
             EXHIBITION STAND<br>
             DESIGN & BUILD
         </h1>
-        <Button href="#">View Our Work</Button>
+        <Button href="#projects">View My Projects</Button>
     </div>
 </section>
 
@@ -26,16 +26,6 @@ import Button from './Button.astro';
         align-items: center;
         justify-content: center;
     }
-
-    video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
     .hero-content {
         z-index: 1;
         display: flex;
@@ -44,5 +34,14 @@ import Button from './Button.astro';
         gap: var(--spacing-6);
         text-align: center;
         color: var(--color-white);
+    }
+
+    video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 </style>
