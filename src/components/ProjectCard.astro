@@ -1,7 +1,6 @@
 ---
 const { title, description, images, category } = Astro.props;
 
-import Button from './Button.astro';
 import Carousel from './Carousel.astro';
 ---
 
@@ -14,7 +13,6 @@ import Carousel from './Carousel.astro';
         <div class="project-category">{category}</div>
         <h3>{title}</h3>
         <p>{description}</p>
-        <Button href="#projects">View Details</Button>
     </div>
 </div>
 
@@ -54,6 +52,7 @@ import Carousel from './Carousel.astro';
     }
     
     .project-content {
+        position: relative;
         padding: var(--spacing-6);
     }
     .project-content h3 {
