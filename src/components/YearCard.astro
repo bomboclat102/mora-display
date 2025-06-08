@@ -1,15 +1,8 @@
 ---
-interface Props {
-    year: string;
-    title: string;
-    description: string;
-    highlight: string;
-}
-
 const { year, title, description, highlight } = Astro.props;
 ---
 
-<article class="year-card">
+<div class="year-card">
     <div class="year-header">
         <div class="year-number">{year}</div>
         <h3>{title}</h3>
@@ -22,10 +15,13 @@ const { year, title, description, highlight } = Astro.props;
             <span>{highlight}</span>
         </div>
     </div>
-</article>
+</div>
 
 <style>
     .year-card {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -35,7 +31,6 @@ const { year, title, description, highlight } = Astro.props;
         position: relative;
         overflow: hidden;
     }
-    
     .year-card::before {
         content: '';
         position: absolute;
@@ -48,13 +43,11 @@ const { year, title, description, highlight } = Astro.props;
         transition: opacity 0.4s ease;
         pointer-events: none;
     }
-    
     .year-card:hover {
         transform: translateY(-8px);
         border-color: rgba(255, 255, 255, 0.2);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
-    
     .year-card:hover::before {
         opacity: 1;
     }
@@ -63,7 +56,6 @@ const { year, title, description, highlight } = Astro.props;
         display: flex;
         align-items: center;
         gap: var(--spacing-4);
-        margin-bottom: var(--spacing-4);
     }
     
     .year-number {
@@ -86,15 +78,21 @@ const { year, title, description, highlight } = Astro.props;
         font-weight: var(--font-weight-bold);
         color: var(--color-white);
     }
+
+    .year-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+    }
     
     .year-content p {
-        color: rgba(255, 255, 255, 0.9);
+        color: var(--color-white);
         line-height: var(--line-height-relaxed);
-        margin-bottom: var(--spacing-4);
     }
     
     .highlight {
         display: inline-flex;
+        width: fit-content;
         align-items: center;
         gap: var(--spacing-2);
         padding: var(--spacing-2) var(--spacing-4);
