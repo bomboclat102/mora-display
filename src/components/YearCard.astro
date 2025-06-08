@@ -1,0 +1,120 @@
+---
+interface Props {
+    year: string;
+    title: string;
+    description: string;
+    highlight: string;
+}
+
+const { year, title, description, highlight } = Astro.props;
+---
+
+<article class="year-card">
+    <div class="year-header">
+        <div class="year-number">{year}</div>
+        <h3>{title}</h3>
+    </div>
+    
+    <div class="year-content">
+        <p>{description}</p>
+        <div class="highlight">
+            <i class="fa-solid fa-trophy"></i>
+            <span>{highlight}</span>
+        </div>
+    </div>
+</article>
+
+<style>
+    .year-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-2xl);
+        padding: var(--spacing-6);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .year-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+    
+    .year-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .year-card:hover::before {
+        opacity: 1;
+    }
+    
+    .year-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-4);
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .year-number {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.8) 100%);
+        border-radius: var(--radius-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-white);
+        box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.3);
+        flex-shrink: 0;
+    }
+    
+    .year-header h3 {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-white);
+    }
+    
+    .year-content p {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: var(--line-height-relaxed);
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .highlight {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2);
+        padding: var(--spacing-2) var(--spacing-4);
+        background: rgba(var(--color-accent-rgb), 0.15);
+        border: 1px solid rgba(var(--color-accent-rgb), 0.3);
+        border-radius: var(--radius-full);
+        color: var(--color-accent);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+    }
+    
+    @media (min-width: 48rem) {
+        .year-number {
+            width: 70px;
+            height: 70px;
+            font-size: var(--font-size-xl);
+        }
+        
+        .year-header h3 {
+            font-size: var(--font-size-2xl);
+        }
+    }
+</style>

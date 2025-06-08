@@ -5,7 +5,7 @@ import logoTransparent from "../assets/logo-transparent.png";
 ---
 
 <header>
-    <a class="logo" href="/">
+    <a class="logo" href="/mora-display">
         <Image
             src={logoTransparent}
             alt="Mora Display"
@@ -23,6 +23,7 @@ import logoTransparent from "../assets/logo-transparent.png";
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -46,10 +47,14 @@ import logoTransparent from "../assets/logo-transparent.png";
 
     .logo {
         height: 100%;
+        transition: transform 0.3s ease;
     }
     .logo img {
         width: auto;
         height: 100%;
+    }
+    .logo:hover {
+        transform: scale(1.1);
     }
 
     nav {
@@ -133,13 +138,32 @@ import logoTransparent from "../assets/logo-transparent.png";
             flex-direction: row;
             gap: var(--spacing-8);
         }
+        nav ul li {
+            position: relative;
+        }
         nav ul li a {
             font-size: var(--font-size-base);
             font-weight: var(--font-weight-medium);
             transition: all 0.3s ease;
+            padding: var(--spacing-2) 0;
+            position: relative;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.8) 100%);
+            border-radius: var(--radius-full);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         nav ul li a:hover {
             color: var(--color-accent);
+        }
+        nav ul li a:hover::after {
+            width: 100%;
         }
 
         .hamburger {
